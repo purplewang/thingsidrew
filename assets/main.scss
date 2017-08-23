@@ -1,0 +1,13 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+$std-padding: 20px;
+
+$colors: (
+  {% for color in site.data.colors %}
+  '{{ color[0] }}': {{ color[1] }},
+  {% endfor %}
+);
+
+@import "main";

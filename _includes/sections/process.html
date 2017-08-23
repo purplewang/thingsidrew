@@ -1,0 +1,41 @@
+
+{% capture top_content %}
+
+## process
+
+The design process always starts with you— beginning with an introductory questionnaire and an online or in-person consultation, followed by the design and personalization of your paper goods. Everything is done by hand, from illustrations, calligraphy, down to the last wax seal.
+{% endcapture top_content %}
+
+{% capture left_column %}
+### WE CHAT
+
+Because each couple is always different, I work closely with you to develop the brief of your order.
+
+After I receive the initial inquiry, I send an introductory questionnaire that covers all the basics of your wedding day. Then we discuss your vision and paper needs, either online or in-person. Your wedding day is at the core of my design process, so I want as many details as I can get.
+
+### WE FINALIZE DETAILS
+
+When it comes to the design details, leave them to me. I make sure everything from materials to the final turnaround date is in line with your budget and wedding plans. I send a proposal of what your order looks like and includes for your review.
+
+Once I receive a completed contract and deposit, I reserve your order and we begin the content phase. This might include gathering photos and guest addresses, to finalizing wording.
+{% endcapture left_content %}
+
+{% capture right_column %}
+### WE CHAT
+
+Because each couple is always different, I work closely with you to develop the brief of your order.
+
+After I receive the initial inquiry, I send an introductory questionnaire that covers all the basics of your wedding day. Then we discuss your vision and paper needs, either online or in-person. Your wedding day is at the core of my design process, so I want as many details as I can get.
+
+### WE FINALIZE DETAILS
+
+When it comes to the design details, leave them to me. I make sure everything from materials to the final turnaround date is in line with your budget and wedding plans. I send a proposal of what your order looks like and includes for your review.
+
+Once I receive a completed contract and deposit, I reserve your order and we begin the content phase. This might include gathering photos and guest addresses, to finalizing wording.
+{% endcapture right_content %}
+
+{% capture section_content %}
+{% include blocks/multi-column.html left=top_content %}
+{% include blocks/multi-column.html left=left_column right=right_column %}
+{% endcapture section_content %}
+{% include blocks/section.html content=section_content color=include.color %}

@@ -1,0 +1,23 @@
+{% capture text %}
+## frequently asked questions
+{% endcapture text %}
+
+{% capture content %}
+{% include blocks/multi-column.html left=text %}
+<ul class="faq-list">
+  {% for faq in site.data.faq %}
+    <li class="faq-list__item">
+      <h4 class="faq-list__question">{{ faq.q | markdownify }}</h4>
+      <div class="faq-list__answer">
+        {{ faq.a | markdownify }}
+      </div>
+    </li>
+  {% endfor %}
+  <li class="faq-list__item">
+    <div class="faq-list__expand-all">expand all</div>
+  </li>
+</ul>
+{% endcapture content %}
+
+{% include blocks/section.html content=content color=include.color %}
+

@@ -1,0 +1,30 @@
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.faq-list__item {
+  margin-bottom: $std-padding;
+}
+
+.faq-list__question {
+  font-size: 1.2em;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.faq-list__answer {
+  display: none;
+  margin: 0 0 $std-padding * 2;
+}
+
+.faq-list__question--open + .faq-list__answer {
+  display: block;
+}
+
+.faq-list__expand-all {
+  cursor: pointer;
+  text-decoration: underline;
+}

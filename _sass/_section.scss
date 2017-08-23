@@ -1,0 +1,29 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding: ($std-padding * 3) $std-padding;
+  z-index: 0;
+}
+
+.section--main {
+  position: relative;
+  min-height: 100vh;
+}
+
+@each $name, $value in $colors {
+  .section--#{$name} {
+    background: $value;
+  }
+}
+
+@media only screen  and (min-width : 500px) {
+  .section {
+    padding: ($std-padding * 4) ($std-padding * 2);
+  }
+}
+
+// @media only screen  and (min-width : 800px) {
+//   .section {
+//     padding: ($std-padding * 5) ($std-padding * 2);
+//   }
+// }

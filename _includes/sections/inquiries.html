@@ -1,0 +1,15 @@
+{% capture text %}
+## inquiries
+
+For all general inquiries, please e-mail [thingsamydrew@gmail.com](mailto:thingsamydrew@gmail.com).
+
+To get started on your order, please fill out [my questionnaire](#) and I’ll be in touch as soon as possible.
+
+{% endcapture text %}
+
+{% capture content %}
+{% include blocks/multi-column.html left=text narrow=true %}
+{% endcapture content %}
+
+{% include blocks/section.html content=content color=include.color %}
+

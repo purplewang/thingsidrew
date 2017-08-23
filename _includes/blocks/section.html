@@ -1,0 +1,10 @@
+{% if include.mainSection %}
+  {% assign headerTag="h1" %}
+{% else %}
+  {% assign headerTag="h2" %}
+{% endif %}
+
+<section class="section {% if include.mainSection %}section--main{% endif%} section--{{ include.color }}">
+  <{{ headerTag }}>{{ include.header }}</{{ headerTag }}>
+  {{ include.content }}
+</section>

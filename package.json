@@ -19,6 +19,6 @@
     "watch-images": "chokidar \"assets/_original-images/**/*\" -d 5000 -c \"npm run process-images\"",
     "watch": "npm run clean; npm run process-images; concurrently \"npm run watch-images\" \"jekyll serve --livereload;\"",
     "build": "npm run clean; npm run process-images; jekyll build",
-    "deploy": "npm run build; git add ."
+    "deploy": "npm run build; git add .; git commit -m \"Automatic update.\"; git push"
   }
 }

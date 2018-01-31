@@ -1,0 +1,23 @@
+http://www.tara-spencer.com/
+https://www.idyllpaper.com/
+
+https://happymenocal.com/stationery/
+http://www.stephaniefishwick.com/about/
+
+
+---
+
+
+thumbnails:
+
+4-up 150x150
+desktop 3-up 215x215
+tablet 2-up 350x350
+mobile 1-up 460x460
+
+
+Full width:
+
+mobile: 500px
+tablet: 800px
+desktop: 800px

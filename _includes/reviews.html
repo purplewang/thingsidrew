@@ -1,0 +1,8 @@
+<ul class="reviews">
+  {% for review in site.data.reviews %}
+    <li class="reviews__review">
+      <div class="reviews__review-stars"></div>
+      <div class="reviews__review-message">{{ review }}</div>
+    </li>
+  {% endfor %}
+</ul>

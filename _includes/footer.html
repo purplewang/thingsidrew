@@ -1,0 +1,11 @@
+<footer class="footer">
+  <ul class="footer__social">
+    {% for social in site.social %}
+    <li class="footer__social-entry footer__social-entry--{{social[0]}}">
+      <a class="footer__social-link" target="blank" rel="nofollow" href="{{social[1]}}" title="{{social[0]}}">{{social[0]}}</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <a class="footer__email" href="mailto:thingsamydrew@gmail.com">thingsamydrew@gmail.com</a>
+</footer>

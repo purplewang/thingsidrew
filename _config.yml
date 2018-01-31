@@ -13,30 +13,114 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Your awesome title
-email: your-email@example.com
+title: Stationery by Amethyst Wang-Hoyer
 description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
+twitter_username: purplewang
 github_username:  jekyll
+
+social:
+  instagram: https://www.instagram.com/thingsamydrew/
+  facebook: https://www.facebook.com/amethystwh
+  etsy: https://www.etsy.com/shop/thingsidrew
+
+navigation:
+  - url: /portfolio/
+    name: portfolio
+  - url: /blog/
+    name: blog
+  - url: /faq/
+    name: faq
+  - url: https://www.etsy.com/shop/thingsidrew
+    name: shop
+
+
+portfolio_order:
+  wedding-paper: Wedding Paper
+  calligraphy: Calligraphy
+  sketch-book: Sketch Book
+
+defaults:
+  - scope:
+      paths: ""
+    values:
+      layout: default
+  - scope:
+      path: _posts
+    values:
+      categories: blog
+      layout: post
+  - scope:
+      path: _portfolio
+    values:
+      layout: portfolio-entry
+  - scope:
+      path: _portfolio/calligraphy
+    values:
+      portfolioType: calligraphy
+  - scope:
+      path: _portfolio/wedding-paper
+    values:
+      portfolioType: wedding-paper
+  - scope:
+      path: _portfolio/sketch-book
+    values:
+      portfolioType: sketch-book
+
+responsive_image_sizes:
+  thumbnails:
+    srcset:
+      - 250
+      - 500
+      - 750
+      - 1000
+    sizes:
+      - "(max-width: 500px) 460px"
+      - "(max-width: 800px) 350px"
+      - "215px"
+  full_width:
+    srcset:
+      - 500
+      - 800
+      - 1000
+      - 1600
+    sizes:
+      - "(max-width: 500px) 500px"
+      - "800px"
+
+collections:
+  portfolio:
+    output: true
+    permalink: /:collection/:path/
 
 # Build settings
 markdown: kramdown
 plugins:
   - jekyll-feed
 
+permalink: pretty
+
+include:
+  - "_pages"
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - yarn.lock
+  - project.sublime-project
+  - scripts/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - assets/_original-images/
+  - _portfolio/portfolio-template.md

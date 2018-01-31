@@ -1,0 +1,24 @@
+.nav {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.nav__item {
+  cursor: pointer;
+}
+
+.nav__item-link {
+  text-decoration: none;
+}
+
+.nav__item-link:hover,
+.nav__item-link--selected {
+  text-decoration: underline;
+}
+
+.nav__item:not(:last-child) {
+  margin-right: $std-padding;
+}

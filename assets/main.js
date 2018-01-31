@@ -1,68 +1,43 @@
-function startCarousel() {
-  var SLIDE_TIME = 4000;
-  var header = document.querySelector('.section--main h1');
-  var entries = Array.prototype.slice.call(
-    document.querySelectorAll('.carousel__entry')
-  );
-  var currentlyVisible = -1;
-
-  function stepCarousel() {
-    header.classList.add('light');
-
-    currentlyVisible += 1;
-
-    if (currentlyVisible < entries.length) {
-      entries[currentlyVisible].classList.add('carousel__entry--visible');
-    } else {
-      currentlyVisible = 0;
-      entries.slice(1).forEach(function(entry) {
-        entry.classList.remove('carousel__entry--visible');
-      });
-    }
-
-    setTimeout(stepCarousel, SLIDE_TIME);
-  }
-
-  function startCarousel() {
-    stepCarousel();
-    header.removeEventListener('mouseenter', startCarousel, {passive: true});
-    header.removeEventListener('touchstart', startCarousel, {passive: true});
-  }
-
-  header.addEventListener('mouseenter', startCarousel, {passive: true});
-  header.addEventListener('touchstart', startCarousel, {passive: true});
-}
-
 function setupStickyNav() {
-  var nav = document.querySelector('.nav');
+  var site = document.querySelector('.site');
 
   window.onscroll = function() {
-    var isSticky = (
-      document.body.scrollTop + document.documentElement.scrollTop > window.innerHeight
-    );
-    nav.classList.toggle('nav--sticky', isSticky);
+    var isScrolled = document.documentElement.scrollTop > 0;
+    site.classList.toggle('site--scrolled', isScrolled);
   };
 }
 
-function setupFaq() {
-  var questions = Array.prototype.slice.call(
-    document.querySelectorAll('.faq-list__question'));
+function setupPortfolioEntryViewer() {
+  var viewer = document.querySelector('.portfolio-entry__viewer');
+  if (!viewer) return;
 
-  questions.forEach(function(question) {
-    question.addEventListener('click', function() {
-      question.classList.toggle('faq-list__question--open');
+  var previousButton = viewer.querySelector('.portfolio-entry__viewer-control--previous');
+  var nextButton = viewer.querySelector('.portfolio-entry__viewer-control--next');
+  var images = [].slice.call(viewer.querySelectorAll('.portfolio-entry__viewer-image'));
+  var currentImage = 0;
+
+  if (!previousButton || !nextButton) return;
+
+  function update() {
+    images.forEach((image, index) => {
+      image.classList.toggle('portfolio-entry__viewer-image--visible', index === currentImage);
     });
+  }
+
+  previousButton.addEventListener('click', function() {
+    currentImage = (currentImage + 1) % images.length;
+    update();
   });
 
-  document.querySelector('.faq-list__expand-all').addEventListener('click', function(){
-    questions.forEach(function(question) {
-      question.classList.add('faq-list__question--open');
-    });
+  nextButton.addEventListener('click', function() {
+    currentImage = currentImage ? currentImage - 1 : images.length - 1;
+    update();
   });
+
+  update();
 }
 
 window.addEventListener('DOMContentLoaded', function() {
-  startCarousel();
   setupStickyNav();
-  setupFaq();
+  setupPortfolioEntryViewer();
 });

@@ -1,0 +1,19 @@
+
+.post__post-meta {
+  display: block;
+  opacity: 0.7;
+  margin-bottom: $std-padding * 2;
+}
+
+.post__nav {
+  display: flex;
+}
+
+.post__nav-next,
+.post__nav-prev {
+  flex: 1;
+}
+
+.post__nav-next {
+  text-align: right;
+}

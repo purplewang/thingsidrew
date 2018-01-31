@@ -1,0 +1,25 @@
+
+{% assign docs = "" | split: "," %}
+{% for doc in include.recommendations limit: 4 %}
+  {% assign docs = docs | push: doc %}
+{% endfor %}
+
+{% if docs.size != 0 %}
+  <div class="recommended">
+    <h2 class="recommended__header">{{ include.headerText }}</h2>
+
+    <ul class="recommended__entries">
+      {% for doc in docs %}
+        <li class="recommended__entry">
+          <a
+            class="recommended__entry-link"
+            href="{{ doc.url | absolute_url }}"
+          >
+            {% assign src = doc.images[0] %}
+            {% include img.html class="recommended__entry-img" src=src thumbnail=true %}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}

@@ -1,0 +1,40 @@
+
+
+{% if include.thumbnail %}
+  {% assign suffix = "thumb" %}
+  {% assign responsive_image_sizes = site.responsive_image_sizes.thumbnails %}
+{% else %}
+  {% assign suffix = "full" %}
+  {% assign responsive_image_sizes = site.responsive_image_sizes.full_width %}
+{% endif %}
+
+{% assign fallbackSrc = "" %}
+{% assign srcsets = "" | split: "," %}
+{% for srcset in responsive_image_sizes.srcset %}
+  {%- capture url -%}
+    /assets/images/{{ include.src }}-{{ suffix }}-{{ srcset }}w.jpg
+  {%- endcapture -%}
+
+  {%- capture srcsetstr -%}
+    {{ url }} {{ srcset }}w
+  {%- endcapture -%}
+
+  {% assign fallbackSrc = url %}
+
+  {% assign srcsets = srcsets | push: srcsetstr %}
+{% endfor %}
+
+<img
+  class="{{ include.class }}"
+  srcset="
+    {%- for srcset in srcsets -%}
+      {{ srcset }}{% unless srcsets.last == srcset %}, {% endunless %}
+    {%- endfor -%}
+  "
+  sizes="
+    {%- for size in responsive_image_sizes.sizes -%}
+      {{ size }}{% unless responsive_image_sizes.sizes.last == size %}, {% endunless %}
+    {%- endfor -%}
+  "
+  src="{{ fallbackSrc }}"
+/>

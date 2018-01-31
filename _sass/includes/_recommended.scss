@@ -1,0 +1,39 @@
+@import "./mixins";
+
+.recommended__header {
+  margin-bottom: $std-padding;
+}
+
+.recommended__entries {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: $std-padding;
+  width: 100%;
+  list-style: none;
+
+  @include tablet {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $std-padding * 2;
+  }
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: $std-padding * 2;
+  }
+}
+
+.recommended__entry-link {
+  position: relative;
+  display: block;
+  padding-top: 100%;
+  box-shadow: $site-box-shadow;
+}
+
+.recommended__entry-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

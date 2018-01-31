@@ -1,0 +1,26 @@
+---
+layout: default
+permalink: /portfolio/
+title: Portfolio
+---
+
+{% assign portfolio = site.collections | where: "label", "portfolio" | first %}
+{% assign allDocs = portfolio.docs | sort: "path" | reverse %}
+
+<div class="portfolio">
+  {% for portfolioType in site.portfolio_order %}
+    <div class="portfolio__group">
+      <h3 class="portfolio__group-title">{{ portfolioType[1] }}</h3>
+      <ul class="portfolio__group-entries">
+        {% for doc in allDocs %}{% if doc.portfolioType == portfolioType[0] %}
+          <li class="portfolio__group-entry">
+            <a class="portfolio__group-entry-link" href="{{ doc.url | absolute_url }}">
+              {% assign src = doc.images[0] %}
+              {% include img.html class="portfolio__group-entry-img" src=src thumbnail=true %}
+            </a>
+          </li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</div>

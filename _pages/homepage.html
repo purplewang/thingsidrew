@@ -1,0 +1,11 @@
+---
+permalink: /
+---
+
+{% include img.html class="homepage__img" src="landing-image" %}
+
+<div class="homepage__section">
+  {% assign portfolio = site.collections | where: "label", "portfolio" | first %}
+  {% assign recommendations = portfolio.docs | where_exp:"doc", "doc.homepage" | sort: "homepage" %}
+  {% include recommended.html recommendations=recommendations %}
+</div>

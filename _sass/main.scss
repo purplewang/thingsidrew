@@ -1,57 +1,162 @@
+@import "./mixins";
+@import "./normalize";
+@import "./variables";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  font-family: 'Source Serif Pro', serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #3e3f4c;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Playfair Display', serif;
+  font-size: $base-font-size;
+  font-weight: 200;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  color: $site-font-color;
+  background: $site-background;
+  min-height: 100%;
 }
 
 p {
   margin-bottom: $std-padding;
-  text-align: justify;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-}
-
-h1 {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 100%;
-  text-align: center;
-  font-size: 10vw;
-}
-
-h1.light {
-  color: white;
-}
-
-h2 {
-  font-size: 40px;
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-h3 {
-  font-weight: 700;
-  font-size: inherit;
+  // font-size: $header-font-size;
   margin-bottom: $std-padding;
+  padding: 0;
+  font-weight: normal;
+  line-height: 1;
+}
+
+hr {
+  display: block;
+  border-style: none;
+  border-bottom: 1px solid $site-font-color;
+  margin: $std-padding $std-padding $std-padding * 2;
+  opacity: 0.1;
 }
 
 a {
   color: inherit;
 }
 
-@import "carousel.scss";
-@import "faq.scss";
-@import "multi-column.scss";
-@import "nav.scss";
-@import "section.scss";
+.site {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.site__content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: $std-padding;
+  margin: $mobile-header-height auto 0;
+  width: 100%;
+  max-width: $desktop-max-width;
+  z-index: 0;
+
+  @include tablet {
+    margin-top: $default-header-height;
+    padding: $std-padding $std-padding * 2;
+  }
+
+  @include desktop {
+    padding: $std-padding $std-padding * 2;
+  }
+}
+
+.site__content img {
+  display: block;
+  width: 100%;
+}
+
+.site__header-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  box-shadow: none;
+  transition: box-shadow 100ms ease-out;
+}
+
+.site--scrolled .site__header-wrapper {
+  box-shadow: $site-box-shadow;
+  transition: box-shadow 300ms ease-out;
+}
+
+.site__header {
+  background: $site-background;
+  padding: 0 $std-padding;
+  margin: 0 auto;
+  max-width: $desktop-max-width;
+  text-align: center;
+
+  @include tablet {
+    display: flex;
+    align-items: center;
+  }
+
+  @include tablet {
+    padding: 0 $std-padding * 2;
+  }
+
+  @include desktop {
+    padding: 0 $std-padding * 2;
+  }
+}
+
+.site__header-logo {
+  display: block;
+}
+
+.site__header-logo-img {
+  max-width: 200px;
+  padding-top: 15px;
+}
+
+.site__header-nav {
+  padding-bottom: $std-padding;
+
+  @include tablet {
+    padding-bottom: 0;
+    display: flex;
+    flex: 1;
+  }
+}
+
+.site__content-nav {
+  padding: $std-padding;
+}
+
+.site__header-nav::before {
+  display: block;
+  content: "";
+  flex: 1;
+}
+
+.site__footer {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+}
+
+@import
+  "./includes/footer",
+  "./includes/nav",
+  "./includes/posts",
+  "./includes/recommended",
+  "./pages/homepage",
+  "./pages/portfolio",
+  "./pages/portfolio-entry"
+;

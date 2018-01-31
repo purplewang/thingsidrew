@@ -1,0 +1,64 @@
+---
+layout: default
+---
+
+<div class="portfolio-entry">
+  <h2>{{ page.title }}</h2>
+
+  <p class="portfolio-entry__meta">Posted on {{ page.date | date: "%B %e, %Y" }}</p>
+
+  <div class="portfolio-entry__viewer">
+    {% if page.images.size != 1 %}
+      <div class="portfolio-entry__viewer-control portfolio-entry__viewer-control--previous"></div>
+    {% endif %}
+
+    <ul class="portfolio-entry__viewer-images">
+      {% for image in page.images %}
+        <li class="portfolio-entry__viewer-image">
+          {% include img.html class="portfolio-entry__viewer-img" src=image %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if page.images.size != 1 %}
+      <div class="portfolio-entry__viewer-control portfolio-entry__viewer-control--next"></div>
+    {% endif %}
+  </div>
+
+  {% if content %}
+    <div class="portfolio-entry__content">
+      {{ content }}
+    </div>
+  {% endif %}
+
+  {% assign portfolio = site.collections | where: "label", "portfolio" | first %}
+  {% assign allDocs = portfolio.docs | where: "portfolioType", page.portfolioType | sort: "path" | reverse %}
+
+  {% assign hasEncounteredCurrentPost = false %}
+
+  {% assign laterDocs = "" | split: "," %}
+  {% assign earlierDocs = "" | split: "," %}
+
+  {% for doc in allDocs %}
+    {% if doc == page %}
+      {% assign hasEncounteredCurrentPost = true %}
+    {% else %}
+      {% if hasEncounteredCurrentPost %}
+        {% assign laterDocs = laterDocs | push: doc %}
+      {% else %}
+        {% assign earlierDocs = earlierDocs | push: doc %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign recommendations = "" | split: "," %}
+  {% for doc in laterDocs %}
+    {% assign recommendations = recommendations | push: doc %}
+  {% endfor %}
+  {% for doc in earlierDocs %}
+    {% assign recommendations = recommendations | push: doc %}
+  {% endfor %}
+
+  {% include recommended.html recommendations=recommendations headerText="Related Work" %}
+
+</div>

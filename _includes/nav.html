@@ -1,6 +1,7 @@
 <ul class="nav">
-  <li class="nav__item">about</li>
-  <li class="nav__item">process</li>
-  <li class="nav__item">inquiries</li>
-  <li class="nav__item">faqs</li>
+  {% for option in site.navigation %}
+    <li class="nav__item">
+      <a class="nav__item-link {% if page.url contains option.url %} nav__item-link--selected{% endif %}" href="{{ option.url }}">{{option.name}}</a>
+    </li>
+  {% endfor %}
 </ul>

@@ -50,9 +50,6 @@ const processImage = async (originalPath) => {
   await resizeAndWriteImages(thumbnail, imageSizes.thumbnails.srcset, 'thumb');
 };
 
-console.log('Removing previously processed images.');
-fs.removeSync(OUTPUT_IMAGE_DIR);
-
 glob(`${ORIGINAL_IMAGE_DIR}/**/*.jpg`, (err, files) => {
   const queue = files.reduce((promise, file) => {
     return promise.then(() => processImage(file));

@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "chokidar-cli": "^1.2.0",
     "concurrently": "^3.5.1",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
@@ -14,7 +15,10 @@
   },
   "scripts": {
     "clean": "./scripts/clean.sh",
-    "process-images": "node scripts/processImages.js",
-    "watch": "npm run clean; npm run process-images;"
+    "process-images": "node scripts/process-images.js",
+    "watch-images": "chokidar \"assets/_original-images/**/*\" -d 5000 -c \"npm run process-images\"",
+    "watch": "npm run clean; npm run process-images; concurrently \"npm run watch-images\" \"jekyll serve --livereload;\"",
+    "build": "npm run clean; npm run process-images; jekyll build",
+    "deploy": "npm run build; git add ."
   }
 }

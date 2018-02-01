@@ -9,9 +9,6 @@ images:
   - portfolio/some-image-1
   - portfolio/some-image-2
   - portfolio/some-image-3
-
-# Choose which image you would like as the thumbnail.
-thumbnail: assets/images/portfolio/someThumbnail.jpg
 ---
 
 Optionally enter a blog post style description for this entry here using markdown formatting.
